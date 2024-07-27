@@ -1,0 +1,26 @@
+section .bss
+    result resd 1      ; reserve space for result
+
+section .text
+    global _start
+
+_start:
+    mov ecx, 6
+    mov eax, 1
+        
+
+loop:
+                        ; Multiply eax by ecx
+    mul ecx
+                        ; Decrement ecx 
+    dec ecx
+                        ; loop until ecx   is 0
+    jnz loop
+
+                        ; Store the result
+    mov [result], eax
+
+done:
+    mov eax, 1          
+    xor ebx, ebx       
+    int 0x80            
