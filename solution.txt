@@ -1,26 +1,28 @@
+section .data
+    number dd 6       ; Define a variable
+
 section .bss
-    result resd 1      ; reserve space for result
+    result resd 1     ; Reserve space for result
 
 section .text
     global _start
 
 _start:
-    mov ecx, 6
-    mov eax, 1
-        
+    mov ecx, [number] ; Load var into ecx
+    mov eax, 1        
 
 loop:
-                        ; Multiply eax by ecx
+                      ; Multiply eax by ecx
     mul ecx
-                        ; Decrement ecx 
+                      ; Decrement ecx 
     dec ecx
-                        ; loop until ecx   is 0
+                      ; Loop until ecx is 0
     jnz loop
 
-                        ; Store the result
+                      ; Store the result
     mov [result], eax
 
 done:
-    mov eax, 1          
-    xor ebx, ebx       
-    int 0x80            
+    mov eax, 1        
+    xor ebx, ebx      
+    int 0x80          
